@@ -12,13 +12,7 @@ class Expedition:
             else:
                 self.elves.append(current_elf)
                 current_elf = Elf()
-
-    def get_top_elf_calories(self):
-        calorie_totals = []
-        for elf in self.elves:
-            calorie_totals.append(elf.food_calorie_total())
-        calorie_totals.sort(reverse=True)
-        return calorie_totals[0]
+        self.elves.append(current_elf)
 
     def get_top_n_elf_calories(self, count):
         calorie_totals = []
