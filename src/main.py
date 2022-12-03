@@ -1,8 +1,5 @@
-from src.domain.RockPaperScissors.Round import Round
 from src.domain.RockPaperScissors.Tournament import Tournament
-from src.util import file
-from src.domain.Expedition import Expedition
-
+from src import file
 
 if __name__ == '__main__':
     # calorie_data = file.open_file('input')

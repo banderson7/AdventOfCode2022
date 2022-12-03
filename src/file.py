@@ -1,5 +1,5 @@
 def open_file(name):
-    file = open(f'strategy.txt')
+    file = open(f'{name}.txt')
     lines = []
     for line in file:
         lines.append(line.strip())
