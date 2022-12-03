@@ -12,5 +12,5 @@ class Tournament:
     def get_all_rounds_total(self):
         running_total = 0
         for round in self.rounds:
-            running_total += round.get_round_result()
+            running_total += round.get_result()
         return running_total

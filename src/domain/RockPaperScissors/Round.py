@@ -4,25 +4,33 @@ from src.domain.RockPaperScissors.Selection import Selection
 
 
 class Round:
-    def __init__(self, opponent_input, player_input):
-        self.opponent_selection = Selection(opponent_input)
-        self.player_selection = Selection(player_input)
+    lose_input = 'X'
+    tie_input = 'Y'
+    win_input = 'Z'
 
-    def get_round_result(self):
-        if self.opponent_selection.option == self.player_selection.option:
-            return Outcomes.TIE.value + self.player_selection.option.value
-        elif self.opponent_selection.option == Options.ROCK:
-            if self.player_selection.option == Options.PAPER:
-                return Outcomes.WON.value + self.player_selection.option.value
-            else:
-                return Outcomes.LOSE.value + self.player_selection.option.value
+    def __init__(self, opponent_input, outcome_input):
+        self.opponent_selection = Selection(opponent_input)
+        self.outcome_input = outcome_input
+
+    def get_result(self):
+        if self.opponent_selection.option == Options.ROCK:
+            if self.outcome_input == self.lose_input:
+                return Outcomes.LOSE.value + Options.SCISSORS.value
+            elif self.outcome_input == self.tie_input:
+                return Outcomes.TIE.value + Options.ROCK.value
+            elif self.outcome_input == self.win_input:
+                return Outcomes.WON.value + Options.PAPER.value
         elif self.opponent_selection.option == Options.PAPER:
-            if self.player_selection.option == Options.SCISSORS:
-                return Outcomes.WON.value + self.player_selection.option.value
-            else:
-                return Outcomes.LOSE.value + self.player_selection.option.value
+            if self.outcome_input == self.lose_input:
+                return Outcomes.LOSE.value + Options.ROCK.value
+            elif self.outcome_input == self.tie_input:
+                return Outcomes.TIE.value + Options.PAPER.value
+            elif self.outcome_input == self.win_input:
+                return Outcomes.WON.value + Options.SCISSORS.value
         elif self.opponent_selection.option == Options.SCISSORS:
-            if self.player_selection.option == Options.ROCK:
-                return Outcomes.WON.value + self.player_selection.option.value
-            else:
-                return Outcomes.LOSE.value + self.player_selection.option.value
+            if self.outcome_input == self.lose_input:
+                return Outcomes.LOSE.value + Options.PAPER.value
+            elif self.outcome_input == self.tie_input:
+                return Outcomes.TIE.value + Options.SCISSORS.value
+            elif self.outcome_input == self.win_input:
+                return Outcomes.WON.value + Options.ROCK.value
