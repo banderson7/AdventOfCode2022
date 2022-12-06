@@ -1,3 +1,6 @@
+import string
+
+from src.domain.Reaarange.Group import Group
 from src.domain.Reaarange.Rucksack import Rucksack
 from src.domain.Reaarange.RucksackPrioritizer import RucksackPrioritizer
 from src.domain.RockPaperScissors.Tournament import Tournament
@@ -16,6 +19,16 @@ if __name__ == '__main__':
 
     # day 3
     rearrange_data = file.open_file('rearrange')
-    rucksack_prioritizer = RucksackPrioritizer(rearrange_data)
-    print(rucksack_prioritizer.get_total())
+    start = 0
+    end = len(rearrange_data)
+    step = 3
+    total = 0
+    for i in range(start, end, step):
+        x = i
+        group_data = rearrange_data[x:x + step]
+        group = Group(group_data)
+        total += group.get_matching_priority()
+    print(total)
+    # rucksack_prioritizer = RucksackPrioritizer(rearrange_data)
+    # print(rucksack_prioritizer.get_total())
 

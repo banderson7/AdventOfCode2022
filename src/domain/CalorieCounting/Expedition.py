@@ -1,5 +1,5 @@
-from src.domain.Elf import Elf
-from src.domain.Food import Food
+from src.domain.CalorieCounting.Elf import Elf
+from src.domain.CalorieCounting.Food import Food
 
 
 class Expedition:

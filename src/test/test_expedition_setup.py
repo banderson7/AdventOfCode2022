@@ -1,6 +1,6 @@
 import unittest
 
-from src.domain.Expedition import Expedition
+from src.domain.CalorieCounting.Expedition import Expedition
 
 
 class TestExpeditionSetup(unittest.TestCase):
