@@ -1,6 +1,6 @@
 import unittest
 
-from src.domain.Food import Food
+from src.domain.CalorieCounting.Food import Food
 
 
 class TestFood(unittest.TestCase):
