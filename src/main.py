@@ -1,8 +1,10 @@
 import string
 
+from src.domain.Assignment import AssignmentPair
 from src.domain.Reaarange.Group import Group
 from src.domain.Reaarange.Rucksack import Rucksack
-from src.domain.Reaarange.RucksackPrioritizer import RucksackPrioritizer
+
+from src.domain.Reaarange.RucksackAnalizer import get_matching_item_total
 from src.domain.RockPaperScissors.Tournament import Tournament
 from src import file
 
@@ -18,17 +20,20 @@ if __name__ == '__main__':
     # print(tournament.get_all_rounds_total())
 
     # day 3
-    rearrange_data = file.open_file('rearrange')
-    start = 0
-    end = len(rearrange_data)
-    step = 3
-    total = 0
-    for i in range(start, end, step):
-        x = i
-        group_data = rearrange_data[x:x + step]
-        group = Group(group_data)
-        total += group.get_matching_priority()
-    print(total)
-    # rucksack_prioritizer = RucksackPrioritizer(rearrange_data)
+    # rearrange_data = file.open_file('rearrange')
+    # print(get_matching_item_total(rearrange_data))
+    # rucksack_prioritizer = RucksackAnalizer(rearrange_data)
     # print(rucksack_prioritizer.get_total())
 
+    cleanup_data = file.open_file('cleanup')
+    pairs = []
+    total = 0
+    for line in cleanup_data:
+        split_line = line.split(',')
+        pairs.append(split_line)
+    for pair in pairs:
+        assignments = AssignmentPair(pair)
+        if assignments.b_minimum <= assignments.a_minimum <= assignments.b_maximum \
+                or assignments.a_minimum <= assignments.b_minimum <= assignments.a_maximum:
+            total += 1
+    print(total)
