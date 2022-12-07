@@ -1,11 +1,5 @@
-import string
-
 from src.domain.Assignment import AssignmentPair
-from src.domain.Reaarange.Group import Group
-from src.domain.Reaarange.Rucksack import Rucksack
 
-from src.domain.Reaarange.RucksackAnalizer import get_matching_item_total
-from src.domain.RockPaperScissors.Tournament import Tournament
 from src import file
 
 if __name__ == '__main__':
