@@ -1,5 +1,4 @@
 from src.domain.Reaarange.Item import Item
-from src.domain.Reaarange.Rucksack import Rucksack
 
 
 class Group:
