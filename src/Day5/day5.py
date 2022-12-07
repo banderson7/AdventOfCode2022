@@ -20,6 +20,7 @@ class Procedures:
             procedure = Procedure(procedure_array[1], procedure_array[3], procedure_array[5])
             self.all_procedures.append(procedure)
 
+
 class Stacks:
     def __init__(self, stack_file):
         lines = []
@@ -54,13 +55,20 @@ class Stacks:
                 crate_to_move = self.stacks_data[procedure.from_stack - 1].pop()
                 self.stacks_data[procedure.to_stack - 1].append(crate_to_move)
 
+    def apply_procedures_same_order(self, procedures_to_apply: Procedures):
+        for procedure in procedures_to_apply.all_procedures:
+            crates_to_move = self.stacks_data[procedure.from_stack - 1][-procedure.move_amount:]
+            for crate in crates_to_move:
+                self.stacks_data[procedure.from_stack - 1].pop()
+                self.stacks_data[procedure.to_stack - 1].append(crate)
+
 
 if __name__ == '__main__':
     stack_file = open('stacks.txt')
     stacks = Stacks(stack_file)
     procedure_file = open('procedure.txt')
     procedures = Procedures(procedure_file)
-    stacks.apply_procedures(procedures)
+    stacks.apply_procedures_same_order(procedures)
     for i in range(len(stacks.stacks_data)):
         print(stacks.stacks_data[i].pop())
 
