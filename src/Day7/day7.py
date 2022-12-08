@@ -20,7 +20,9 @@ class Directory:
     def get_total_size(self):
         size = 0
         for file in self.files:
-            size += file.size
+            size += int(file.size)
+        for directory in self.directories:
+            size += directory.get_total_size()
         return size
 
     def get_child_directory(self, name):
@@ -28,10 +30,22 @@ class Directory:
             if directory.name == name:
                 return directory
 
+
 class Terminal:
     def __init__(self):
         self.root_directory = Directory('/', None)
         self.current_directory = self.root_directory
+        self.all_directories = []
+
+    def get_directories_under_100000_total(self):
+        found_directories = []
+        for directory in self.all_directories:
+            if directory.get_total_size() < 100000:
+                found_directories.append(directory)
+        total_size = 0
+        for directory in found_directories:
+            total_size += directory.get_total_size()
+        return total_size
 
     def input_commands(self, commands):
         for command in commands:
@@ -54,6 +68,7 @@ class Terminal:
             elif str.startswith(command, 'dir'):
                 output = command.split()
                 new_directory = Directory(output[1], self.current_directory)
+                self.all_directories.append(new_directory)
                 self.current_directory.add_directory(new_directory)
             else:
                 output = command.split()
@@ -67,4 +82,6 @@ if __name__ == '__main__':
         lines.append(line.strip())
     terminal = Terminal()
     terminal.input_commands(lines)
+    directories = terminal.get_directories_under_100000_total()
+    print(directories)
     pass
