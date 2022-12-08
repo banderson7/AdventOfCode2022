@@ -45,4 +45,3 @@ class Terminal:
                 output = command.split()
                 new_file = File(output[1], output[0])
                 self.current_directory.add_file(new_file)
-
